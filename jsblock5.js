@@ -102,3 +102,113 @@ for (let number of range) {
   alert(number); // 1, затем 2, 3, 4, 5
 
 }
+
+let map = new Map();
+
+map.set("1", "str1");    // строка в качестве ключа
+
+map.set(1, "num1");      // цифра как ключ
+
+map.set(true, "bool1");  // булево значение как ключ
+
+// помните, обычный объект Object приводит ключи к строкам?
+
+// Map сохраняет тип ключей, так что в этом случае сохранится 2 разных значения:
+
+alert(map.get(1)); // "num1"
+
+alert(map.get("1")); // "str1"
+
+alert(map.size); // 3
+
+let recipeMap = new Map([
+
+  ["огурец", 500],
+
+  ["помидор", 350],
+
+  ["лук",    50]
+
+]);
+
+// перебор по ключам (овощи)
+
+for (let vegetable of recipeMap.keys()) {
+
+  alert(vegetable); // огурец, помидор, лук
+
+}
+
+// перебор по значениям (числа)
+
+for (let amount of recipeMap.values()) {
+
+  alert(amount); // 500, 350, 50
+
+}
+
+// перебор по элементам в формате [ключ, значение]
+
+for (let entry of recipeMap) { // то же самое, что и recipeMap.entries()
+
+  alert(entry); // огурец,500 (и так далее)
+  
+}
+
+let visitedSet = new WeakSet();
+
+let john = { name: "John" };
+
+let pete = { name: "Pete" };
+
+let mary = { name: "Mary" };
+
+visitedSet.add(john); // John заходил к нам
+
+visitedSet.add(pete); // потом Pete
+
+visitedSet.add(john); // John снова
+
+// visitedSet сейчас содержит двух пользователей
+
+// проверим, заходил ли John?
+
+alert(visitedSet.has(john)); // true
+
+// проверим, заходила ли Mary?
+
+alert(visitedSet.has(mary)); // false
+
+john = null;
+
+// структура данных visitedSet будет очищена автоматически (объект john будет удалён из visitedSet)
+
+let messages = [
+
+  {text: "Hello", from: "John"},
+
+  {text: "How goes?", from: "John"},
+
+  {text: "See you soon", from: "Alice"}
+
+];
+
+let readMap = new WeakMap();
+
+readMap.set(messages[0], new Date(2017, 1, 1));
+
+// Объект Date мы рассмотрим позднее
+
+let user = new Map();
+
+user.set("name", "John");
+
+user.set("age", "30");
+
+// Map перебирает как пары [ключ, значение], что очень удобно для деструктурирования
+
+for (let [key, value] of user) {
+
+  alert(`${key}:${value}`); // name:John, затем age:30
+  
+}
